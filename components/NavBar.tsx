@@ -3,44 +3,52 @@ import {
   SignedOut,
   SignInButton,
   SignOutButton,
+  SignUpButton,
+  UserButton,
   UserProfile,
+  
 } from "@clerk/nextjs";
 import {
   NavigationMenu,
   NavigationMenuContent,
-  NavigationMenuItem,
+  NavigationMenuList,
 } from "./ui/navigation-menu";
 import Link from "next/link";
 
 export default function NavBar() {
   return (
-    <NavigationMenu>
-      <NavigationMenuContent className="left-0">
-        <NavigationMenuItem>
+    <div className="flex justify-between items-center p-4">
+      <ul className="flex gap-4">
+        <li>
           <Link href="/">Home</Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
+        </li>
+        <li>
           <Link href="/about">About</Link>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
+        </li>
+        <li>
           <Link href="/contact">Contact</Link>
-        </NavigationMenuItem>
-      </NavigationMenuContent>
-      <NavigationMenuContent className="right-0">
-        <NavigationMenuItem>
+        </li>
+        </ul>
+        <ul className="flex gap-4 right-0">
+        <li>
           <SignedOut>
             <SignInButton />
           </SignedOut>
           <SignedIn>
-            <UserProfile />
+            <UserButton />
           </SignedIn>
-        </NavigationMenuItem>
-        <NavigationMenuItem>
+        </li>
+        <li>
           <SignedIn>
             <SignOutButton />
           </SignedIn>
-        </NavigationMenuItem>
-      </NavigationMenuContent>
-    </NavigationMenu>
+          <SignedOut>
+            <SignUpButton />
+          </SignedOut>
+        </li>
+      </ul>
+        
+      
+    </div>
   );
 }
